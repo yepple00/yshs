@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장애물 피하기 게임</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      color: #0077cc;
+    }
+
+    #game-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: 20px auto;
+      border: 1px solid #ddd;
+      overflow: hidden;
+    }
+
+    #player {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: #0077cc;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #obstacle {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background-color: #ff6347;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: moveObstacle 2s linear infinite;
+    }
+
+    @keyframes moveObstacle {
+      0% {
+        transform: translateX(-50%) translateY(0);
+      }
+      100% {
+        transform: translateX(-50%) translateY(400px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>장애물 피하기 게임</h1>
+
+  <div id="game-container">
+    <div id="player"></div>
+    <div id="obstacle"></div>
+  </div>
+
+  <script>
+    document.addEventListener("keydown", movePlayer);
+
+    function movePlayer(event) {
+      var player = document.getElementById("player");
+
+      if (event.key === "ArrowLeft" && parseInt(player.style.left) > 0) {
+        player.style.left = parseInt(player.style.left) - 10 + "px";
+      } else if (event.key === "ArrowRight" && parseInt(player.style.left) < 360) {
+        player.style.left = parseInt(player.style.left) + 10 + "px";
+      }
+    }
+  </script>
+
+</body>
+</html>

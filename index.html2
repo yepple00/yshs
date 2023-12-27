@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자 맞추기 게임</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #f0f0f0;
+    }
+
+    h1 {
+      color: #0077cc;
+    }
+
+    #game-container {
+      margin-top: 20px;
+    }
+
+    #guess-input {
+      width: 50px;
+    }
+
+    #result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #ff6347;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>숫자 맞추기 게임</h1>
+
+  <div id="game-container">
+    <p>1부터 10까지의 숫자 중 하나를 맞춰보세요:</p>
+    <input type="number" id="guess-input" min="1" max="10">
+    <button onclick="checkGuess()">확인</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    // 랜덤 숫자 생성 (1부터 10까지)
+    var targetNumber = Math.floor(Math.random() * 10) + 1;
+
+    function checkGuess() {
+      // 사용자가 입력한 숫자 가져오기
+      var userGuess = parseInt(document.getElementById("guess-input").value);
+
+      // 입력한 숫자와 정답 비교
+      if (userGuess === targetNumber) {
+        document.getElementById("result").innerText = "정답입니다! 🎉";
+        resetGame();
+      } else {
+        document.getElementById("result").innerText = "틀렸습니다. 다시 시도하세요.";
+      }
+    }
+
+    function resetGame() {
+      // 새로운 랜덤 숫자 생성
+      targetNumber = Math.floor(Math.random() * 10) + 1;
+
+      // 결과 메시지 초기화
+      document.getElementById("result").innerText = "";
+
+      // 입력창 초기화
+      document.getElementById("guess-input").value = "";
+    }
+  </script>
+
+</body>
+</html>
